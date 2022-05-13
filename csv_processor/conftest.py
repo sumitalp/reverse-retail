@@ -3,6 +3,7 @@ import csv
 from io import StringIO
 import os
 import pandas as pd
+
 # from pandas import testing
 
 from django.core.files.base import ContentFile
@@ -51,10 +52,10 @@ def image():
 
 @pytest.fixture
 def wrong_csv_file():
-    tmp_file = r'/tmp/tmp.csv'
-    with open(tmp_file, 'w') as file:
+    tmp_file = r"/tmp/tmp.csv"
+    with open(tmp_file, "w") as file:
         writer = csv.writer(file)
-        writer.writerows([['Data0', 'A0A0A0', 1, 'Data3', 'Data4', 'Data5', 4000]])
+        writer.writerows([["Data0", "A0A0A0", 1, "Data3", "Data4", "Data5", 4000]])
 
     return tmp_file
 
@@ -66,7 +67,7 @@ def csv_file():
     csv_writer = csv.writer(csv_buffer)
     csv_writer.writerow(row)
 
-    return ContentFile(csv_buffer.getvalue().encode('utf-8'), "output.csv")
+    return ContentFile(csv_buffer.getvalue().encode("utf-8"), "output.csv")
 
 
 @pytest.fixture
@@ -77,6 +78,7 @@ def customer():
 @pytest.fixture
 def address(customer):
     return AddressFactory(customer=customer)
+
 
 # @pytest.mark.parametrize('test_data, expected', [
 #     ([['Data0', 'A0A0A0', 1, 'Data3', 'Data4', 'Data5', 4000]],

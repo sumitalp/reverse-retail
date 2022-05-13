@@ -12,10 +12,12 @@ class Customer(TimeStampedModel):
     email = models.EmailField(max_length=128, blank=True)
 
     class Meta:
-        ordering = ('-created',)
+        ordering = ("-created",)
         # Unique constraint
         constraints = [
-            models.UniqueConstraint(fields=["name", "first_name", "email"], name='name_email_idx')
+            models.UniqueConstraint(
+                fields=["name", "first_name", "email"], name="name_email_idx"
+            )
         ]
 
     def __str__(self) -> str:
@@ -31,7 +33,7 @@ class Address(TimeStampedModel):
     country = models.CharField(max_length=128)
 
     class Meta:
-        ordering = ('-created',)
+        ordering = ("-created",)
 
     def __str__(self) -> str:
         return f"Address of {self.customer}"

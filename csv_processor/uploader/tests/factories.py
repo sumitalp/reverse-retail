@@ -4,6 +4,7 @@ from django.utils import timezone
 
 from csv_processor.uploader.models import Address, Customer
 
+
 class CustomerFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Customer

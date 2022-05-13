@@ -10,16 +10,20 @@ class TestUploaderModels:
     def test_customer_with_integrityerror(self, customer):
         with pytest.raises(IntegrityError) as iexc:
             customer_1 = Customer.objects.create(
-                name=customer.name,
-                first_name=customer.first_name,
-                email=customer.email
+                name=customer.name, first_name=customer.first_name, email=customer.email
             )
-            assert "duplicate key value violates unique constraint \"name_email_idx\"" in iexc
+            assert (
+                'duplicate key value violates unique constraint "name_email_idx"'
+                in iexc
+            )
 
     def test_address_without_payload(self):
         with pytest.raises(IntegrityError) as iexc:
             Address.objects.create()
-            assert "null value in column \"customer_id\" violates not-null constraint" in iexc
+            assert (
+                'null value in column "customer_id" violates not-null constraint'
+                in iexc
+            )
 
     def test_address_model(self, customer):
         address, create = Address.objects.get_or_create(
@@ -27,7 +31,7 @@ class TestUploaderModels:
             city=Faker("city"),
             country=Faker("country"),
             zipcode=Faker("zipcode"),
-            customer=customer
+            customer=customer,
         )
         assert create
 
@@ -37,5 +41,5 @@ class TestUploaderModels:
         AddressFactory.create_batch(size=2, customer=customer_2)
         AddressFactory.create_batch(size=1, customer=customer_3)
 
-        assert result_1[0].customer==customer_1
+        assert result_1[0].customer == customer_1
         assert customer_2.addresses.count() == 2

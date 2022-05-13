@@ -6,12 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('uploader', '0001_initial'),
+        ("uploader", "0001_initial"),
     ]
 
     operations = [
         migrations.AddConstraint(
-            model_name='customer',
-            constraint=models.UniqueConstraint(fields=('name', 'first_name', 'email'), name='name_email_idx'),
+            model_name="customer",
+            constraint=models.UniqueConstraint(
+                fields=("name", "first_name", "email"), name="name_email_idx"
+            ),
         ),
     ]

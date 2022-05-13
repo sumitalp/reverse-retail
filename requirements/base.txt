@@ -1,4 +1,4 @@
-black==21.7b0  # https://github.com/psf/black
+black==22.3.0  # https://github.com/psf/black
 celery==5.0.1
 dj-database-url==0.5.0
 Django==3.2
