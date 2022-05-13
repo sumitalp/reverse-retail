@@ -44,3 +44,9 @@ Go to project folder and run
 
 ## Project urls
 - For apis: `http://localhost:8100/`
+
+## Project coverage
+- Write testcase with above 80% of coverage
+- CSV uploaded successfully
+- Though it's a large file, so I call a background task using celery
+- Project is dockerise and instruction has given at Readme file.
