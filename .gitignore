@@ -145,3 +145,4 @@ media/*
 
 # exception to the rule
 !media/.gitkeep
+.DS_Store

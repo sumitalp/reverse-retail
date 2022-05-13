@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block page_heading %}{% endblock %}
+{% block title %}File Uploader{% endblock %}
+
+{% block content %}
+
+	<h2>Uploader Form:</h2>
+	<form action="/add/" method="post" id="fileUploader" enctype='multipart/form-data'>
+		{% csrf_token %}
+		<div class="form-group">
+			<label for="file">File</label>
+			<input type="file" class="form-control-file" id="file" name="file">
+		  </div>
+	<p><input type="submit" value="Submit" class="todo-button"></p>
+	</form>
+
+	<div id="result">
+		
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+	
+			$("#fileUploader").on("submit", function (e) {
+				e.preventDefault();
+				var formData = new FormData(this);
+				console.log(formData)
+				var request;
+				if(!$("#file").val()){
+					$("#result").html("File is required.")
+					return false;
+				}
+	
+				request = $.ajax({
+					url: $(this).attr("action"),
+					method: "POST",
+					data: formData,
+					enctype: "multipart/form",
+					cache: false,
+					contentType: false,
+					processData: false
+				});
+	
+				request.done(function(msg) {
+					$("#result").html(msg.detail);
+				});
+	
+				request.fail(function(jqXHR, textStatus) {
+					console.log(textStatus);
+					$("#result").html("Request failed: " + textStatus);
+				});
+
+				return false;
+			});
+	
+		});
+	</script>
+
+{% endblock %}

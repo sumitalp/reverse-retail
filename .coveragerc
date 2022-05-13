@@ -1,0 +1,6 @@
+[run]
+omit =
+    # omit this single file
+    csv_processor/schema.py
+    csv_processor/wsgi.py
+    csv_processor/asgi.py
